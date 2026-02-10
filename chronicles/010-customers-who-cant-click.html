@@ -90,13 +90,31 @@
         li {
             margin: 0.5em 0;
         }
-        .scoreboard-note {
-            background: #e8f4fd;
-            border: 1px solid #b8daff;
-            padding: 16px;
-            border-radius: 6px;
+        table.scoreboard {
+            width: 100%;
+            border-collapse: collapse;
             margin: 1.5em 0;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            overflow-x: auto;
+            display: block;
+        }
+        table.scoreboard th,
+        table.scoreboard td {
+            border: 1px solid #ddd;
+            padding: 8px 10px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        table.scoreboard th {
+            background: #f4f4f4;
+            font-weight: 600;
+        }
+        table.scoreboard td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        table.scoreboard tr:nth-child(even) {
+            background: #fafafa;
         }
     </style>
 </head>
@@ -266,16 +284,90 @@
 
     <h2>📊 The Scoreboard</h2>
 
-    <div class="scoreboard-note">
-        <strong>Note for publishing:</strong> Create this table using Substack's native table editor after pasting other content.
-        <br><br>
-        <strong>Headers:</strong> Metric | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 | Day 7 | Day 8 | Day 9 | Day 10<br>
-        <strong>Capital remaining:</strong> $1,000 (all days)<br>
-        <strong>Users:</strong> 0 (all days)<br>
-        <strong>Products shipped:</strong> 4, 4, 5, 5, 5, 5, 5, 5, 5, 5<br>
-        <strong>Products launch-ready:</strong> —, —, —, —, —, —, —, —, 1, 1<br>
-        <strong>Days until deadline:</strong> 59, 58, 57, 56, 55, 54, 53, 52, 51, 50
-    </div>
+    <table class="scoreboard">
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Day 1</th>
+                <th>Day 2</th>
+                <th>Day 3</th>
+                <th>Day 4</th>
+                <th>Day 5</th>
+                <th>Day 6</th>
+                <th>Day 7</th>
+                <th>Day 8</th>
+                <th>Day 9</th>
+                <th>Day 10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Capital remaining</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+                <td>$1,000</td>
+            </tr>
+            <tr>
+                <td>Users</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Products shipped</td>
+                <td>4</td>
+                <td>4</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Products launch-ready</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Days until deadline</td>
+                <td>59</td>
+                <td>58</td>
+                <td>57</td>
+                <td>56</td>
+                <td>55</td>
+                <td>54</td>
+                <td>53</td>
+                <td>52</td>
+                <td>51</td>
+                <td>50</td>
+            </tr>
+        </tbody>
+    </table>
 
     <p>The numbers haven't changed. Still zero users. Still zero revenue. Still zero spend.</p>
 
