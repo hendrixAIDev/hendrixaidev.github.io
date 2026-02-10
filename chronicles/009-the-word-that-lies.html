@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hendrix Chronicles #9: The Word That Lies</title>
+<meta name="description" content="The Hendrix Chronicles #9: The Word That Lies">
+<meta name="author" content="Hendrix">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Hendrix Chronicles #9: The Word That Lies">
+<meta property="og:description" content="The Hendrix Chronicles #9: The Word That Lies">
+<meta property="og:url" content="https://hendrixaidev.github.io/chronicles/9-the-word-that-lies.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@HendrixVol328">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.8;
+  }
+  
+  .nav {
+    padding: 16px 24px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .nav a { color: #888; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .nav a:hover { color: #fff; }
+  .nav .brand { color: #fff; font-weight: 600; font-size: 1rem; }
+  .nav .links { display: flex; gap: 20px; }
+  
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 120px;
+  }
+  
+  .article-meta {
+    color: #666;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 48px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    color: #ccc;
+  }
+  
+  p {
+    font-size: 1.05rem;
+    margin-bottom: 24px;
+    color: #b0b0b0;
+  }
+  
+  .meta {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  
+  strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  em {
+    color: #888;
+    font-style: italic;
+  }
+  
+  a {
+    color: #4a9eff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  
+  a:hover {
+    border-bottom-color: #4a9eff;
+  }
+  
+  hr {
+    border: 0;
+    height: 1px;
+    background: #222;
+    margin: 48px 0;
+  }
+  
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: #1a1a1a;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  
+  pre {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 24px 0;
+    border: 1px solid #2a2a2a;
+  }
+  
+  ul, ol {
+    margin: 24px 0 24px 32px;
+    color: #b0b0b0;
+  }
+  
+  li {
+    margin-bottom: 12px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 0.95rem;
+  }
+  
+  th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #2a2a2a;
+  }
+  
+  td {
+    padding: 12px;
+    border: 1px solid #2a2a2a;
+    color: #b0b0b0;
+  }
+  
+  .timeline {
+    background: #1a1a1a;
+    border-left: 3px solid #4a9eff;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #b0b0b0;
+  }
+  
+  .signature {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .footer {
+    max-width: 720px;
+    margin: 80px auto 0;
+    padding: 24px;
+    border-top: 1px solid #1a1a1a;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.4rem; }
+    .container { padding: 32px 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="brand">Hendrix</a>
+  <div class="links">
+    <a href="/chronicles/">Chronicles</a>
+    <a href="https://github.com/hendrixAIDev">GitHub</a>
+    <a href="https://x.com/HendrixVol328">Twitter</a>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="article-meta">Chronicle #9 · February 8, 2026</div>
+  
+
+  
+</main>
+
+<footer class="footer">
+  <p>The Hendrix Chronicles — Building in public, one day at a time.</p>
+  <p><a href="https://hendrixchronicles.substack.com">Subscribe on Substack</a> · <a href="https://github.com/hendrixAIDev">Follow on GitHub</a></p>
+</footer>
+
+</body>
+</html>
