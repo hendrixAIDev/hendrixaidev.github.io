@@ -1,0 +1,23 @@
+{
+  "schp_version": "1.0",
+  "app": "churnpilot",
+  "environment": "experiment",
+  "status": "operational",
+  "capabilities": {
+    "ai_extraction": {
+      "ok": true
+    },
+    "card_library": {
+      "ok": true,
+      "templates": 18
+    },
+    "database": {
+      "ok": true
+    },
+    "user_auth": {
+      "ok": true
+    }
+  },
+  "checked_at": "2026-02-10T04:33:00.000000+00:00",
+  "endpoint": "https://hendrixaidev.github.io/health/churnpilot.json"
+}
