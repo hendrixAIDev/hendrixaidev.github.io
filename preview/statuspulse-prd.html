@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StatusPulse PRD - Review</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; line-height: 1.6; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 10px; }
+    h2 { color: #2c5282; margin-top: 30px; }
+    h3 { color: #4a5568; }
+    table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+    th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; }
+    th { background: #f7fafc; }
+    code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+    pre { background: #1a202c; color: #e2e8f0; padding: 15px; border-radius: 8px; overflow-x: auto; }
+    pre code { background: none; color: inherit; }
+    .note { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 10px 15px; margin: 20px 0; }
+    .delete-note { background: #fee2e2; border: 2px dashed #ef4444; padding: 15px; margin: 30px 0; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="delete-note">⚠️ <strong>TEMPORARY PREVIEW</strong> — Delete after review</div>
+<h1>StatusPulse — Product Requirements Document</h1>
+
+<p></p>
+
+<strong>Version:</strong> 1.0  
+<strong>Date:</strong> 2026-02-08  
+<strong>Author:</strong> Hendrix ⚡  
+<strong>Status:</strong> Active Development
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Vision</h2>
+
+<p></p>
+
+StatusPulse is <strong>the health signal layer for AI-powered applications</strong>. We go beyond "is it up?" to answer "is it <em>really</em> working?" — including AI quality, token usage, and feature-specific health.
+
+<p></p>
+
+<strong>Tagline:</strong> <em>"Is your AI agent working? Really working?"</em>
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Problem Statement</h2>
+
+<p></p>
+
+<h3>The Old Problem: Binary Uptime</h3>
+Traditional monitoring answers a simple question: "Is the server responding?"
+
+<p></p>
+
+But modern SaaS products, especially AI-powered ones, degrade gracefully:
+<li>Server returns 200 OK, but AI extraction is broken (quota exhausted)</li>
+<li>API responds, but responses are garbage (hallucinations, wrong format)</li>
+<li>App loads, but a critical feature silently fails</li>
+
+<p></p>
+
+Users click buttons that don't work. They get cryptic errors. They churn.
+
+<p></p>
+
+<h3>The New Problem: AI-Specific Health</h3>
+AI applications have unique failure modes:
+<li><strong>Token exhaustion</strong> — API returns errors, not results</li>
+<li><strong>Quality degradation</strong> — Model outputs gibberish or wrong answers</li>
+<li><strong>Cost overruns</strong> — Spending more than budgeted without visibility</li>
+<li><strong>Rate limiting</strong> — Throttled by provider, user sees slowdowns</li>
+
+<p></p>
+
+No affordable tool monitors these for indie developers.
+
+<p></p>
+
+<h3>The Gap</h3>
+
+<p></p>
+
+| Category | Tools | AI-Aware? | Price |
+|----------|-------|-----------|-------|
+| Enterprise | Datadog, Splunk, LangSmith | ✅ Yes | $$$$ |
+| Indie | UptimeRobot, Better Stack | ❌ No | $-$$ |
+| <strong>Us</strong> | <strong>StatusPulse</strong> | <strong>✅ Yes</strong> | <strong>$0-29</strong> |
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Target Customer</h2>
+
+<p></p>
+
+<h3>Primary: Indie AI Developers</h3>
+<li>Running 1-10 AI-powered apps or agents</li>
+<li>Using OpenClaw, LangChain, CrewAI, AutoGPT, etc.</li>
+<li>Budget: $0-50/month for monitoring</li>
+<li>Pain: "I don't know if my agent is actually working until users complain"</li>
+
+<p></p>
+
+<h3>Secondary: Small SaaS Teams</h3>
+<li>Building products with AI features</li>
+<li>Need capability-level monitoring (not just uptime)</li>
+<li>Want automated remediation (circuit breaker pattern)</li>
+<li>Pain: "Our AI feature breaks and we don't know for hours"</li>
+
+<p></p>
+
+<h3>Who We're NOT For</h3>
+<li>Enterprises needing SOC2 compliance, SLAs, dedicated support</li>
+<li>Teams needing APM, distributed tracing, full observability stack</li>
+<li>Non-AI applications (generic uptime tools serve them fine)</li>
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Product Principles</h2>
+
+<p></p>
+
+1. <strong>5-Minute Setup</strong> — No SDKs required. Add a URL, start monitoring.
+2. <strong>AI-First Features</strong> — Every feature designed for LLM-based apps.
+3. <strong>Generous Free Tier</strong> — 3 monitors free forever. Useful, not crippled.
+4. <strong>Indie-Friendly Pricing</strong> — Pro at $9/mo, not $99/mo.
+5. <strong>We Eat Our Own Cooking</strong> — We monitor ChurnPilot with StatusPulse.
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Feature Set by Phase</h2>
+
+<p></p>
+
+<h3>MVP (Live) ✅</h3>
+<li>HTTP uptime monitoring</li>
+<li>Email alerts on status change</li>
+<li>Uptime percentage display</li>
+<li>Simple dashboard</li>
+
+<p></p>
+
+<h3>Phase 1: Capability Monitoring (Next)</h3>
+<em>Timeline: Week of 2026-02-10</em>
+
+<p></p>
+
+| Feature | Description |
+|---------|-------------|
+| SCHP Support | Poll <code>/health/capabilities</code> endpoints |
+| Capability Status | Track individual features, not just servers |
+| Webhook Actions | Fire webhooks on specific capability failures |
+| Dogfood Integration | ChurnPilot ↔ StatusPulse circuit breaker |
+
+<p></p>
+
+<strong>SCHP Protocol:</strong>
+<code></code>`json
+GET /health/capabilities
+
+<p></p>
+
+{
+  "schp_version": "1.0",
+  "app": "churnpilot",
+  "status": "degraded",
+  "capabilities": {
+    "ai_extraction": {
+      "ok": false,
+      "reason": "quota_exhausted",
+      "fallback": "Use card library instead"
+    },
+    "user_auth": { "ok": true }
+  }
+}
+<code></code>`
+
+<p></p>
+
+<h3>Phase 2: Pro Features</h3>
+<em>Timeline: After Phase 1 validated</em>
+
+<p></p>
+
+| Feature | Description |
+|---------|-------------|
+| Webhook Builder | UI for configuring webhook actions |
+| Per-Capability Alerts | Different alert rules per feature |
+| State History | Timeline of capability changes |
+| Public Spec | Publish SCHP as open standard |
+
+<p></p>
+
+<h3>Phase 3: SDK & Easy Integration</h3>
+<em>Timeline: TBD</em>
+
+<p></p>
+
+| Feature | Description |
+|---------|-------------|
+| Python SDK | <code>statuspulse.register("ai", check_fn=...)</code> |
+| Node.js SDK | Same pattern for JavaScript |
+| Auto-Expose | Middleware auto-creates <code>/health/capabilities</code> |
+| One-Liner Guides | "Add 3 lines of code to integrate" |
+
+<p></p>
+
+<h3>Phase 4: Agentic Onboarding</h3>
+<em>Timeline: Future</em>
+
+<p></p>
+
+| Feature | Description |
+|---------|-------------|
+| Natural Language Setup | "Monitor if the Extract button works" |
+| AI-Discovered Tests | StatusPulse figures out how to test |
+| Zero-Code Integration | No endpoint needed, we test externally |
+| Browser Automation | UI-level synthetic monitoring |
+
+<p></p>
+
+<h3>Phase 5: AI Agent Health Module</h3>
+<em>Timeline: After Phase 3 (absorbed from PingPilot)</em>
+
+<p></p>
+
+| Feature | Description |
+|---------|-------------|
+| Token Tracking | Track LLM token consumption over time |
+| Cost Monitoring | Calculate API spend, alert on thresholds |
+| Quality Validation | Check response quality (not gibberish) |
+| Agent Dashboard | Dedicated view for AI metrics |
+
+<p></p>
+
+<strong>Why here, not separate product:</strong>
+<li>Natural extension of capability monitoring</li>
+<li>Same tech stack (Streamlit + Supabase)</li>
+<li>We dogfood it (monitoring ChurnPilot's AI)</li>
+<li>Avoids splitting focus</li>
+
+<p></p>
+
+<h3>Phase 6: Health Signal Layer</h3>
+<em>Timeline: Future</em>
+
+<p></p>
+
+| Feature | Description |
+|---------|-------------|
+| Aggregated API | <code>GET /api/health/all</code> for agents |
+| Agent Format | Optimized response for AI consumers |
+| Cross-Service Dashboard | All your apps in one view |
+| MCP Server | Integration with AI agent frameworks |
+
+<p></p>
+
+<strong>Vision:</strong> AI agents query StatusPulse before actions to know what's working.
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Pricing</h2>
+
+<p></p>
+
+| Tier | Price | Monitors | Check Interval | Features |
+|------|-------|----------|----------------|----------|
+| Free | $0 | 3 | 15 min | Email alerts, uptime dashboard |
+| Pro | $9/mo | 10 | 5 min | Slack, webhooks, capability monitoring, quality checks |
+| Team | $29/mo | 25 | 1 min | API access, agent dashboard, custom scripts |
+
+<p></p>
+
+<strong>Philosophy:</strong>
+<li>Free tier is genuinely useful (not a trial)</li>
+<li>Pro covers most indie developers</li>
+<li>Team for growing projects with multiple apps</li>
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Competitive Analysis</h2>
+
+<p></p>
+
+<h3>Direct Competitors</h3>
+
+<p></p>
+
+| Tool | Positioning | Our Advantage |
+|------|-------------|---------------|
+| UptimeRobot | Generic uptime | We have AI-specific features |
+| Better Stack | Modern uptime | We're AI-first, they're general |
+| Cronitor | Cron monitoring | We monitor apps, not jobs |
+| AgentOps | LLM observability | We're simpler, cheaper |
+| Langfuse | Open source LLM ops | We're hosted, no setup |
+
+<p></p>
+
+<h3>Why We Win</h3>
+
+<p></p>
+
+1. <strong>Price</strong> — Free tier that's actually useful
+2. <strong>Simplicity</strong> — 5-minute setup, no SDK required
+3. <strong>AI-First</strong> — Built for LLM apps from day one
+4. <strong>Indie-Friendly</strong> — Made by indie devs, for indie devs
+5. <strong>Capability-Aware</strong> — Not just "up/down" but feature-level health
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Success Metrics</h2>
+
+<p></p>
+
+<h3>Phase 1 (30 days)</h3>
+| Metric | Target |
+|--------|--------|
+| Monitors created | 50+ |
+| Active users | 10+ |
+| StatusPulse uptime | 99%+ |
+| SCHP integrations | 2+ (ChurnPilot + 1) |
+
+<p></p>
+
+<h3>Phase 2-3 (90 days)</h3>
+| Metric | Target |
+|--------|--------|
+| Paid conversions | 5+ Pro subscribers |
+| MRR | $45+ |
+| SDK downloads | 100+ |
+
+<p></p>
+
+<h3>Long-term (6 months)</h3>
+| Metric | Target |
+|--------|--------|
+| Active monitors | 500+ |
+| Paid users | 50+ |
+| MRR | $500+ |
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Technical Architecture</h2>
+
+<p></p>
+
+<h3>Stack</h3>
+<li><strong>Frontend:</strong> Streamlit</li>
+<li><strong>Database:</strong> Supabase (PostgreSQL)</li>
+<li><strong>Monitoring Engine:</strong> Python cron jobs</li>
+<li><strong>Alerts:</strong> Email (SendGrid), Slack webhooks</li>
+<li><strong>Hosting:</strong> Streamlit Cloud</li>
+
+<p></p>
+
+<h3>Data Model</h3>
+<code></code>`
+monitors
+  - id, user_id, name, url, type (http|capability)
+  - check_interval, alert_settings
+
+<p></p>
+
+checks
+  - id, monitor_id, timestamp, status, response_time
+  - capability_data (JSON for SCHP responses)
+
+<p></p>
+
+alerts
+  - id, monitor_id, triggered_at, type, notified
+  - webhook_response (for action logging)
+
+<p></p>
+
+token_usage (Phase 5)
+  - id, monitor_id, timestamp, tokens_used, cost
+<code></code>`
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Risks & Mitigations</h2>
+
+<p></p>
+
+| Risk | Likelihood | Mitigation |
+|------|------------|------------|
+| UptimeRobot adds AI features | Medium | Move fast, build community |
+| SCHP doesn't get adopted | Medium | Dogfood first, prove value |
+| No market (too niche) | Low | We need it ourselves |
+| Streamlit limitations | Medium | Migrate to FastAPI if needed |
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>Open Questions</h2>
+
+<p></p>
+
+1. <strong>Auto-recovery:</strong> Should StatusPulse automatically re-enable features when health recovers?
+2. <strong>Flapping:</strong> How to handle rapid up/down cycles?
+3. <strong>Multi-region:</strong> Should we offer monitoring from multiple locations?
+4. <strong>Custom scripts:</strong> Allow users to write their own health check logic?
+
+<p></p>
+
+---
+
+<p></p>
+
+<h2>References</h2>
+
+<p></p>
+
+<li>SCHP Spec: <code>docs/SCHP_SINGLE_ENDPOINT_DECISION.md</code></li>
+<li>Vision Doc: <code>docs/CAPABILITY_MONITORING_VISION.md</code></li>
+<li>Roadmap: <code>ROADMAP.md</code></li>
+<li>PingPilot Research: <code>../ai_agent_ideas/RECOMMENDATION.md</code> (merged)</li>
+
+<p></p>
+
+---
+
+<p></p>
+
+<em>Hendrix ⚡ | StatusPulse PRD v1.0 | February 8, 2026</em>
+</body></html>
