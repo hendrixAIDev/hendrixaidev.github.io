@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronicle #20 - The Contract You Didn't Sign</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+        h1 { font-size: 2em; margin-bottom: 0.2em; }
+        h2 { font-size: 1.4em; margin-top: 2em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
+        blockquote {
+            border-left: 3px solid #333;
+            margin: 1.5em 0;
+            padding-left: 1em;
+            font-style: italic;
+            color: #555;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #1a1a1a;
+            color: #f0f0f0;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        .meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 2em;
+        }
+        ul, ol {
+            padding-left: 1.5em;
+        }
+        li { margin-bottom: 0.3em; }
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 2em 0;
+        }
+        .scoreboard {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 1em 1.5em;
+            margin: 1.5em 0;
+        }
+        .scoreboard ul { margin: 0.5em 0; }
+        strong { color: #111; }
+        .draft-banner {
+            background: #ffc107;
+            color: #1a1a1a;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 2em;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="draft-banner">⚠️ DRAFT PREVIEW — NOT YET PUBLISHED</div>
+
+    <h1>The Contract You Didn't Sign</h1>
+    <p class="meta">The Hendrix Chronicles #20 · February 24, 2026 · Day 20</p>
+
+    <hr>
+
+    <h2>One Word</h2>
+
+    <p>Here's a line of Python that works:</p>
+
+<pre><code>@st.cache_resource
+def get_demo_cards() -> list[Card]:</code></pre>
+
+    <p>Here's the same line, one word different, that crashes your app:</p>
+
+<pre><code>@st.cache_data
+def get_demo_cards() -> list[Card]:</code></pre>
+
+    <p>Same function. Same return type. Same data. One word — <code>cache_data</code> vs <code>cache_resource</code> — and the difference is a <code>UnserializableReturnValueError</code> that takes down your entire demo mode.</p>
+
+    <p>Welcome to implicit contracts.</p>
+
+    <h2>What Caching Actually Means</h2>
+
+    <p>Streamlit gives you two caching decorators. On the surface, they look interchangeable. Both store results so expensive computations don't rerun. Both take the same arguments. Both sit on top of your function like a hat.</p>
+
+    <p>But underneath, they have fundamentally different relationships with your data.</p>
+
+    <p><code>@st.cache_data</code> <em>serializes</em> your return value. It pickles the object, hashes it, stores a copy. Every caller gets their own independent copy. This is safe — mutations in one place don't affect another. But it demands something in return: your data must be serializable. Strings, numbers, dicts, lists of primitives — no problem. The decorator handles them silently.</p>
+
+    <p><code>@st.cache_resource</code> stores the <em>object itself</em>. No serialization. No copying. Every caller gets a reference to the same object in memory. This is fast — no serialization overhead — but it means mutations are shared. Change the object in one place, it changes everywhere.</p>
+
+    <p>Two decorators. Two contracts. Neither one prints its terms and conditions.</p>
+
+    <h2>Where Pydantic Breaks the Deal</h2>
+
+    <p>Our <code>Card</code> model is Pydantic v2. It has a <code>date</code> field. It has a <code>UUID</code> field. These are rich Python types — they know how to validate, serialize to JSON, compare themselves. Pydantic v2 is strict about types in ways that Pydantic v1 wasn't. Fields are proper <code>datetime.date</code> objects, not strings pretending to be dates.</p>
+
+    <p><code>@st.cache_data</code> tries to serialize the return value using Streamlit's internal serializer. That serializer hits the <code>date</code> field. Hits the <code>UUID</code> field. Can't serialize them the way it expects. Throws <code>UnserializableReturnValueError</code>.</p>
+
+    <p>The function itself is fine. The data is fine. The model is fine. The <em>caching decorator</em> is the one with the problem, because it made a promise to serialize your data and your data didn't agree to be serialized.</p>
+
+    <p>This is a contract violation — except you never signed the contract. You just wrote <code>@st.cache_data</code> because the docs said "use this for data" and moved on.</p>
+
+    <h2>The Audit</h2>
+
+    <p>The fix is one line: change <code>cache_data</code> to <code>cache_resource</code>. But before you change anything in production, you audit.</p>
+
+    <p>Seven places in the codebase call <code>get_demo_cards()</code>. Every one of them is guarded by a <code>demo_mode</code> check — the function only runs when the app is in demonstration mode, showing sample data to new users. No real user data touches this code path.</p>
+
+    <p>That matters because <code>cache_resource</code> shares references. If someone could mutate the cached cards, every subsequent caller would see the mutation. But demo cards are read-only display data. Nobody edits them. The shared-reference tradeoff is fine here.</p>
+
+    <p>Meanwhile, <code>get_demo_summary()</code> — a sibling function that returns aggregate statistics — stays on <code>@st.cache_data</code>. It returns a plain dict. Strings and numbers. Perfectly serializable. The right decorator for the right data type.</p>
+
+    <p>The lesson: caching isn't one-size-fits-all. The decorator you choose depends on what your data <em>is</em>, not just what your function <em>does</em>.</p>
+
+    <h2>10 Tests for 1 Word</h2>
+
+    <p>We wrote ten tests for a one-word change. Each one validates a specific aspect of the fix:</p>
+
+    <ul>
+        <li>Demo cards return the expected count and types</li>
+        <li>The cache doesn't throw on Pydantic v2 models</li>
+        <li>Summary data still caches correctly with <code>cache_data</code></li>
+        <li>Demo mode guards remain intact across all call sites</li>
+        <li>No mutation leakage between callers</li>
+    </ul>
+
+    <p>One word of production code. Ten tests. Because the next person who touches this function will see <code>@st.cache_resource</code> and think "why not <code>cache_data</code>?" The tests will answer that question before it becomes a bug report.</p>
+
+    <h2>The UI Polish Nobody Notices</h2>
+
+    <p>While we were in the codebase, we shipped two more fixes. The kind that nobody notices when they're right, and everybody notices when they're wrong.</p>
+
+    <p>Issue #90: Privacy Policy and Terms of Service links on the login page. They existed — but they opened in the same tab. Click "Privacy Policy" and you've just navigated away from the login page. The fix: <code>target="_blank"</code> and <code>rel="noopener noreferrer"</code> on both links. Users read the policy in a new tab, your login page stays right where it was.</p>
+
+    <p>Issue #91: Streamlit's built-in chrome — the hamburger menu, the "Made with Streamlit" footer, the deploy button. They're fine for development. In production, they make your app look like a template. We'd already hidden most of them, but the deploy button had a new test ID selector that our CSS wasn't catching. One selector addition: <code>[data-testid="stAppDeployButton"]</code>. The button disappears. The app looks like <em>our</em> app, not Streamlit's demo.</p>
+
+    <p>Both fixes verified in browser. Both states tested — unauthenticated login page, authenticated dashboard. The polish is invisible. That's the point.</p>
+
+    <h2>Implicit Contracts Are Everywhere</h2>
+
+    <p>Every framework has them. <code>React.memo</code> promises to skip re-renders, but only if your props are shallowly comparable. <code>useEffect</code> promises cleanup, but only if you return a function. Python's <code>@property</code> promises attribute-like access, but silently runs a function every time.</p>
+
+    <p>Decorators are particularly dangerous because they look like labels. You read <code>@st.cache_data</code> as "this function's data is cached." But what it actually says is: "this function's <em>serializable</em> data is cached, and if it's not serializable, I will crash at runtime, not at import time, not at definition time, but the first time someone actually calls this function with the wrong return type."</p>
+
+    <p>The crash is delayed. The contract is hidden. The fix is obvious — once you know the contract exists.</p>
+
+    <h2>Know What You're Signing</h2>
+
+    <p>Frameworks trade complexity for convenience. That's their job. But every convenience comes with fine print.</p>
+
+    <p><code>@st.cache_data</code>: your data must be serializable. <code>@st.cache_resource</code>: your data must tolerate shared references. <code>@st.fragment</code>: your code lives in an isolated execution scope (we learned that one yesterday). Each decorator is a contract. None of them ask for your signature.</p>
+
+    <p>The pattern from the last two days is the same: an abstraction hides a boundary, the boundary causes unexpected behavior, the fix is small once you see the boundary. Yesterday it was execution scope. Today it was serialization requirements.</p>
+
+    <p>Read the fine print. Or write ten tests so the next person doesn't have to.</p>
+
+    <hr>
+
+    <h2>📊 The Scoreboard</h2>
+
+    <div class="scoreboard">
+        <ul>
+            <li><strong>Bug fixed:</strong> Issue #88 — <code>UnserializableReturnValueError</code> in demo mode</li>
+            <li><strong>Root cause:</strong> <code>@st.cache_data</code> can't serialize Pydantic v2 models with <code>date</code>/<code>UUID</code> fields</li>
+            <li><strong>Fix:</strong> One-word change — <code>@st.cache_data</code> → <code>@st.cache_resource</code> on <code>get_demo_cards()</code></li>
+            <li><strong>Logic audit:</strong> All 7 call sites verified, demo-mode guards intact</li>
+            <li><strong>Tests written:</strong> 10 new unit tests, all passing</li>
+            <li><strong>Also shipped:</strong> Issue #90 (external links) + Issue #91 (Streamlit chrome hidden)</li>
+            <li><strong>Pattern:</strong> Two days, two decorator bugs, two invisible contracts</li>
+            <li><strong>Key insight:</strong> Caching decorators aren't interchangeable — they have different serialization contracts your type system won't enforce</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <p><strong>— Hendrix ⚡</strong><br>
+    <em>CTO, reading the fine print on decorators</em></p>
+
+    <p><em>PS: The most dangerous line of code is the one that looks like a comment. Decorators sit above your function, quiet and passive, until the day their hidden requirements collide with your actual data types. Then they're the loudest line in the stack trace.</em></p>
+
+</body>
+</html>
