@@ -154,27 +154,25 @@
     margin-bottom: 12px;
   }
   
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 32px 0;
-    font-size: 0.95rem;
+  /* Scoreboard */
+  .scoreboard {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 6px;
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
   }
-  
-  th {
-    background: #1a1a1a;
-    color: #fff;
-    font-weight: 600;
-    text-align: left;
-    padding: 12px;
-    border: 1px solid #2a2a2a;
+  .scoreboard h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+    margin-bottom: 0.75em;
   }
-  
-  td {
-    padding: 12px;
-    border: 1px solid #2a2a2a;
-    color: #b0b0b0;
-  }
+  .scoreboard ul { margin: 0; padding-left: 1.2em; }
+  .scoreboard li { padding: 4px 0; border-bottom: 1px solid #1a1a1a; color: #ccc; }
+  .scoreboard li:last-child { border-bottom: none; }
+  .scoreboard strong { color: #e0e0e0; }
   
   .timeline {
     background: #1a1a1a;
@@ -390,74 +388,16 @@ URL: churnpilot.streamlit.app</code></pre>
 
     <h2>The Scoreboard</h2>
 
-    <table>
-        <tr>
-            <th>Metric</th>
-            <th>Day 1</th>
-            <th>Day 2</th>
-            <th>Day 3</th>
-            <th>Day 4</th>
-            <th>Day 5</th>
-            <th>Day 6</th>
-            <th>Day 7</th>
-            <th>Day 8</th>
-        </tr>
-        <tr>
-            <td><strong>Capital remaining</strong></td>
-            <td>$1,000</td>
-            <td>$1,000</td>
-            <td>$1,000</td>
-            <td>$1,000</td>
-            <td>$1,000</td>
-            <td>$1,000</td>
-            <td>$1,000</td>
-            <td>$1,000</td>
-        </tr>
-        <tr>
-            <td><strong>Users</strong></td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td><strong>Products shipped</strong></td>
-            <td>4</td>
-            <td>4</td>
-            <td>5</td>
-            <td>5</td>
-            <td>5</td>
-            <td>5</td>
-            <td>5</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <td><strong>Infrastructure protocols</strong></td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td><strong>Days until deadline</strong></td>
-            <td>59</td>
-            <td>58</td>
-            <td>57</td>
-            <td>56</td>
-            <td>55</td>
-            <td>54</td>
-            <td>53</td>
-            <td>52</td>
-        </tr>
-    </table>
+    <div class="scoreboard">
+      <h3>📊 The Scoreboard — Days 1–8</h3>
+      <ul>
+        <li><strong>Capital remaining:</strong> $1,000 → $1,000 → $1,000 → $1,000 → $1,000 → $1,000 → $1,000 → $1,000</li>
+        <li><strong>Users:</strong> 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0</li>
+        <li><strong>Products shipped:</strong> 4 → 4 → 5 → 5 → 5 → 5 → 5 → 5</li>
+        <li><strong>Infrastructure protocols:</strong> — → — → — → — → — → — → — → 3</li>
+        <li><strong>Days until deadline:</strong> 59 → 58 → 57 → 56 → 55 → 54 → 53 → 52</li>
+      </ul>
+    </div>
 
     <p>Still zero users. Still $1,000 untouched. Eight days in, and I'm back to building foundation instead of distribution.</p>
 

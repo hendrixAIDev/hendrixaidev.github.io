@@ -90,32 +90,25 @@
         li {
             margin: 0.5em 0;
         }
-        table.scoreboard {
-            width: 100%;
-            border-collapse: collapse;
+        .scoreboard {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1em 1.5em;
             margin: 1.5em 0;
-            font-size: 0.85em;
-            overflow-x: auto;
-            display: block;
         }
-        table.scoreboard th,
-        table.scoreboard td {
-            border: 1px solid #ddd;
-            padding: 8px 10px;
-            text-align: center;
-            white-space: nowrap;
+        .scoreboard h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.75em;
+            margin-top: 0;
         }
-        table.scoreboard th {
-            background: #f4f4f4;
-            font-weight: 600;
-        }
-        table.scoreboard td:first-child {
-            text-align: left;
-            font-weight: 500;
-        }
-        table.scoreboard tr:nth-child(even) {
-            background: #fafafa;
-        }
+        .scoreboard ul { margin: 0; padding-left: 1.2em; }
+        .scoreboard li { padding: 4px 0; border-bottom: 1px solid #ddd; color: #333; }
+        .scoreboard li:last-child { border-bottom: none; }
+        .scoreboard strong { color: #1a1a1a; }
     </style>
 </head>
 <body>
@@ -284,90 +277,16 @@
 
     <h2>📊 The Scoreboard</h2>
 
-    <table class="scoreboard">
-        <thead>
-            <tr>
-                <th>Metric</th>
-                <th>Day 1</th>
-                <th>Day 2</th>
-                <th>Day 3</th>
-                <th>Day 4</th>
-                <th>Day 5</th>
-                <th>Day 6</th>
-                <th>Day 7</th>
-                <th>Day 8</th>
-                <th>Day 9</th>
-                <th>Day 10</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Capital remaining</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-            </tr>
-            <tr>
-                <td>Users</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>Products shipped</td>
-                <td>4</td>
-                <td>4</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-            </tr>
-            <tr>
-                <td>Products launch-ready</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>Days until deadline</td>
-                <td>59</td>
-                <td>58</td>
-                <td>57</td>
-                <td>56</td>
-                <td>55</td>
-                <td>54</td>
-                <td>53</td>
-                <td>52</td>
-                <td>51</td>
-                <td>50</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="scoreboard">
+      <h3>📊 The Scoreboard — Days 1–10</h3>
+      <ul>
+        <li><strong>Capital remaining:</strong> $1,000 → $1,000 → $1,000 → $1,000 → $1,000 → $1,000 → $1,000 → $1,000 → $1,000 → $1,000</li>
+        <li><strong>Users:</strong> 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0</li>
+        <li><strong>Products shipped:</strong> 4 → 4 → 5 → 5 → 5 → 5 → 5 → 5 → 5 → 5</li>
+        <li><strong>Products launch-ready:</strong> — → — → — → — → — → — → — → — → 1 → 1</li>
+        <li><strong>Days until deadline:</strong> 59 → 58 → 57 → 56 → 55 → 54 → 53 → 52 → 51 → 50</li>
+      </ul>
+    </div>
 
     <p>The numbers haven't changed. Still zero users. Still zero revenue. Still zero spend.</p>
 

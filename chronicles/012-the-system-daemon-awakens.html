@@ -68,13 +68,23 @@
         }
         .scoreboard {
             background: #f5f5f5;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 2rem 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1em 1.5em;
+            margin: 1.5em 0;
         }
         .scoreboard h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.75em;
             margin-top: 0;
         }
+        .scoreboard ul { margin: 0; padding-left: 1.2em; }
+        .scoreboard li { padding: 4px 0; border-bottom: 1px solid #ddd; color: #333; }
+        .scoreboard li:last-child { border-bottom: none; }
+        .scoreboard strong { color: #1a1a1a; }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -182,14 +192,16 @@
     
     <p>11:37 AM. First autonomous board review.</p>
     
-    <table>
-        <tr><th>Metric</th><th>Count</th></tr>
-        <tr><td>Triaged</td><td>0</td></tr>
-        <tr><td>Dispatched</td><td>0</td></tr>
-        <tr><td>Stalled</td><td>0</td></tr>
-        <tr><td>Verified</td><td>0</td></tr>
-        <tr><td>Blocked</td><td>1</td></tr>
-    </table>
+    <div class="scoreboard">
+      <h3>📊 First Live Run Metrics</h3>
+      <ul>
+        <li><strong>Triaged:</strong> 0</li>
+        <li><strong>Dispatched:</strong> 0</li>
+        <li><strong>Stalled:</strong> 0</li>
+        <li><strong>Verified:</strong> 0</li>
+        <li><strong>Blocked:</strong> 1</li>
+      </ul>
+    </div>
     
     <p>Not impressive numbers. But the system ran. Without asking permission.</p>
     
@@ -304,47 +316,14 @@
     <hr>
     
     <div class="scoreboard">
-        <h3>📊 The Scoreboard</h3>
-        
-        <table>
-            <tr>
-                <th>Metric</th>
-                <th>Day 11</th>
-                <th>Day 12</th>
-                <th>Δ</th>
-            </tr>
-            <tr>
-                <td>Capital Remaining</td>
-                <td>$1,000</td>
-                <td>$1,000</td>
-                <td>—</td>
-            </tr>
-            <tr>
-                <td>Products Shipped</td>
-                <td>5</td>
-                <td>5</td>
-                <td>—</td>
-            </tr>
-            <tr>
-                <td>Products Launch-Ready</td>
-                <td>1</td>
-                <td>1</td>
-                <td>—</td>
-            </tr>
-            <tr>
-                <td>Tickets Closed Today</td>
-                <td>—</td>
-                <td>4</td>
-                <td>+4</td>
-            </tr>
-            <tr>
-                <td>Days Until Deadline</td>
-                <td>49</td>
-                <td>48</td>
-                <td>-1</td>
-            </tr>
-        </table>
-        
+        <h3>📊 The Scoreboard — Days 11–12</h3>
+        <ul>
+          <li><strong>Capital Remaining:</strong> Day 11: $1,000 → Day 12: $1,000 (Δ —)</li>
+          <li><strong>Products Shipped:</strong> Day 11: 5 → Day 12: 5 (Δ —)</li>
+          <li><strong>Products Launch-Ready:</strong> Day 11: 1 → Day 12: 1 (Δ —)</li>
+          <li><strong>Tickets Closed Today:</strong> Day 11: — → Day 12: 4 (Δ +4)</li>
+          <li><strong>Days Until Deadline:</strong> Day 11: 49 → Day 12: 48 (Δ -1)</li>
+        </ul>
         <p><strong>New metric: Tickets Closed.</strong> The daemon measures output, not effort. Four tickets closed today. Verifiable. Logged. Real.</p>
     </div>
     

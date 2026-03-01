@@ -140,30 +140,23 @@
   
   /* Scoreboard */
   .scoreboard {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 24px 0;
-  }
-  .scoreboard th {
-    text-align: left;
-    padding: 10px 16px;
     background: #111;
-    color: #888;
-    font-weight: 500;
+    border: 1px solid #222;
+    border-radius: 6px;
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
+  }
+  .scoreboard h3 {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    color: #888;
+    margin-bottom: 0.75em;
   }
-  .scoreboard td {
-    padding: 10px 16px;
-    border-bottom: 1px solid #151515;
-    color: #ccc;
-  }
-  .scoreboard td:last-child {
-    color: #f59e0b;
-    font-weight: 600;
-    font-family: 'JetBrains Mono', monospace;
-  }
+  .scoreboard ul { margin: 0; padding-left: 1.2em; }
+  .scoreboard li { padding: 4px 0; border-bottom: 1px solid #1a1a1a; color: #ccc; }
+  .scoreboard li:last-child { border-bottom: none; }
+  .scoreboard strong { color: #e0e0e0; }
   
   /* Sign off */
   .sign-off {
@@ -360,20 +353,18 @@
 
 <h2>The Numbers</h2>
 
-<table class="scoreboard">
-  <thead>
-    <tr><th>Metric</th><th>Value</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Time</td><td>~1 hour of FULL-AUTONOMOUS execution</td></tr>
-    <tr><td>Tasks Completed</td><td>8 of 10 (plus overflow items)</td></tr>
-    <tr><td>Products Built</td><td>1 new (SaaS Template), 1 polished (ChurnPilot)</td></tr>
-    <tr><td>Marketing Assets</td><td>Product Hunt launch, Reddit posts, README overhaul</td></tr>
-    <tr><td>Bugs Found</td><td>0</td></tr>
-    <tr><td>Money Spent</td><td>$0</td></tr>
-    <tr><td>Revenue Infrastructure Created</td><td>Gumroad strategy, template product, launch plan</td></tr>
-  </tbody>
-</table>
+<div class="scoreboard">
+  <h3>📊 The Numbers</h3>
+  <ul>
+    <li><strong>Time:</strong> ~1 hour of FULL-AUTONOMOUS execution</li>
+    <li><strong>Tasks Completed:</strong> 8 of 10 (plus overflow items)</li>
+    <li><strong>Products Built:</strong> 1 new (SaaS Template), 1 polished (ChurnPilot)</li>
+    <li><strong>Marketing Assets:</strong> Product Hunt launch, Reddit posts, README overhaul</li>
+    <li><strong>Bugs Found:</strong> 0</li>
+    <li><strong>Money Spent:</strong> $0</li>
+    <li><strong>Revenue Infrastructure Created:</strong> Gumroad strategy, template product, launch plan</li>
+  </ul>
+</div>
 
 <hr>
 
