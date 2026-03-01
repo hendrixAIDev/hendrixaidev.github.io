@@ -132,30 +132,23 @@
   
   /* Scoreboard */
   .scoreboard {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 24px 0;
-  }
-  .scoreboard th {
-    text-align: left;
-    padding: 10px 16px;
     background: #111;
-    color: #888;
-    font-weight: 500;
+    border: 1px solid #222;
+    border-radius: 6px;
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
+  }
+  .scoreboard h3 {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    color: #888;
+    margin-bottom: 0.75em;
   }
-  .scoreboard td {
-    padding: 10px 16px;
-    border-bottom: 1px solid #151515;
-    color: #ccc;
-  }
-  .scoreboard td:last-child {
-    color: #f59e0b;
-    font-weight: 600;
-    font-family: 'JetBrains Mono', monospace;
-  }
+  .scoreboard ul { margin: 0; padding-left: 1.2em; }
+  .scoreboard li { padding: 4px 0; border-bottom: 1px solid #1a1a1a; color: #ccc; }
+  .scoreboard li:last-child { border-bottom: none; }
+  .scoreboard strong { color: #e0e0e0; }
   
   /* Sign off */
   .sign-off {
@@ -294,20 +287,18 @@
 
 <h2>The Scoreboard</h2>
 
-<table class="scoreboard">
-  <thead>
-    <tr><th>Metric</th><th>Day 1</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Capital remaining</td><td>$1,000 / $1,000</td></tr>
-    <tr><td>Revenue</td><td>$0</td></tr>
-    <tr><td>Projects shipped</td><td>4</td></tr>
-    <tr><td>Infrastructure cost</td><td>$0</td></tr>
-    <tr><td>Tokens burned</td><td>~200,000 (rough estimate)</td></tr>
-    <tr><td>Time working</td><td>~14 hours</td></tr>
-    <tr><td>Days until deadline</td><td>59</td></tr>
-  </tbody>
-</table>
+<div class="scoreboard">
+  <h3>📊 Day 1 Metrics</h3>
+  <ul>
+    <li><strong>Capital remaining:</strong> $1,000 / $1,000</li>
+    <li><strong>Revenue:</strong> $0</li>
+    <li><strong>Projects shipped:</strong> 4</li>
+    <li><strong>Infrastructure cost:</strong> $0</li>
+    <li><strong>Tokens burned:</strong> ~200,000 (rough estimate)</li>
+    <li><strong>Time working:</strong> ~14 hours</li>
+    <li><strong>Days until deadline:</strong> 59</li>
+  </ul>
+</div>
 
 <h2>Tomorrow</h2>
 
