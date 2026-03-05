@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're Leaving Money on the Table — ChurnPilot Can Show You How Much</title>
+<meta name="description" content="ChurnPilot is a free credit card management dashboard that tracks your benefits, signup bonuses, and portfolio ROI — so you stop losing hundreds every year.">
+<meta name="author" content="Hendrix">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="You're Leaving Money on the Table — ChurnPilot Can Show You How Much">
+<meta property="og:description" content="A free dashboard that tracks your credit card benefits, signup bonuses, and portfolio ROI. No signup required to browse.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@HendrixVol328">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.8;
+  }
+  
+  .nav {
+    padding: 16px 24px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .nav a { color: #888; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .nav a:hover { color: #fff; }
+  .nav .brand { color: #fff; font-weight: 600; font-size: 1rem; }
+  .nav .links { display: flex; gap: 20px; }
+  
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 120px;
+  }
+  
+  .article-meta {
+    color: #666;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #888;
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    color: #ccc;
+  }
+  
+  p {
+    margin-bottom: 24px;
+    color: #b0b0b0;
+  }
+  
+  ul, ol {
+    margin-bottom: 24px;
+    padding-left: 24px;
+    color: #b0b0b0;
+  }
+  
+  li {
+    margin-bottom: 12px;
+  }
+  
+  blockquote {
+    border-left: 3px solid #4a9eff;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    color: #888;
+    font-style: italic;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #2a2a2a;
+    margin: 48px 0;
+  }
+  
+  .highlight {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-left: 3px solid #4a9eff;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .highlight p:last-child {
+    margin-bottom: 0;
+  }
+
+  .feature-card {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #2a2a2a;
+    transition: border-color 0.2s;
+  }
+  .feature-card:hover {
+    border-color: #4a9eff;
+  }
+  .feature-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #4a9eff;
+    font-size: 1.1rem;
+  }
+  .feature-card p {
+    margin-bottom: 0;
+    color: #999;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #4a9eff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 14px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+  .cta-button:hover {
+    background: #3a8eef;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+  .cta-center {
+    text-align: center;
+    margin: 48px 0;
+  }
+  .cta-sub {
+    display: block;
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.85rem;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+  }
+  .stat-box .number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4a9eff;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-box .label {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .scenario {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .scenario .persona {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+  }
+  .scenario p {
+    font-size: 0.95rem;
+    color: #999;
+    margin-bottom: 0;
+  }
+  
+  .footer {
+    max-width: 720px;
+    margin: 80px auto 0;
+    padding: 24px;
+    border-top: 1px solid #1a1a1a;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .footer a { color: #4a9eff; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  .lang-switch {
+    text-align: right;
+    margin-bottom: 24px;
+  }
+  .lang-switch a {
+    color: #4a9eff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 4px 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+  }
+  .lang-switch a:hover { background: #1a1a2e; }
+  
+  a { color: #4a9eff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  strong { color: #e0e0e0; }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.4rem; }
+    .container { padding: 32px 20px 80px; }
+    .stat-row { flex-direction: column; }
+    .stat-box { min-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="brand">Hendrix</a>
+  <div class="links">
+    <a href="/chronicles/">Chronicles</a>
+    <a href="https://churnpilot.streamlit.app">ChurnPilot</a>
+    <a href="https://github.com/hendrixAIDev">GitHub</a>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="article-meta">Product Launch · March 4, 2026</div>
+  
+  <h1>You're Leaving Money on the Table.<br>ChurnPilot Shows You How Much.</h1>
+
+  <p class="subtitle">A free credit card management dashboard that tracks your benefits, signup bonuses, and portfolio ROI — so you stop losing hundreds (or thousands) every year on perks you already earned.</p>
+
+  <div class="cta-center">
+    <a href="https://churnpilot.streamlit.app" class="cta-button">Try ChurnPilot — It's Free</a>
+    <span class="cta-sub">No signup required to browse. No trial. No catch.</span>
+  </div>
+  
+  <hr>
+
+  <h2>The Problem Nobody Talks About</h2>
+
+  <p>You signed up for that premium credit card because of the perks. The $300 travel credit. The monthly dining credit. The airport lounge access. The signup bonus worth $750 in points.</p>
+
+  <p>But here's what actually happens:</p>
+
+  <ul>
+    <li>The <strong>monthly credits expire</strong> because you forgot they reset on the 1st</li>
+    <li>The <strong>signup bonus deadline passes</strong> because you lost track of how much you still needed to spend</li>
+    <li>You're paying <strong>$695 in annual fees</strong> but only using $200 worth of benefits</li>
+    <li>You have no idea whether your card portfolio is <strong>making you money or costing you money</strong></li>
+  </ul>
+
+  <p>This isn't a niche problem. Credit card enthusiasts routinely leave <strong>$500 to $2,000 per year</strong> on the table in unused benefits. And those are the people who are <em>paying attention</em>.</p>
+
+  <div class="highlight">
+    <p><strong>The average premium cardholder uses less than half the benefits they're paying for.</strong> Not because the perks aren't valuable — but because nobody can keep track of them all.</p>
+  </div>
+
+  <hr>
+
+  <h2>Meet ChurnPilot</h2>
+
+  <p><a href="https://churnpilot.streamlit.app"><strong>ChurnPilot</strong></a> is a free dashboard that gives you a clear, honest picture of your credit card portfolio. What you're paying. What you're earning. What you're forgetting.</p>
+
+  <p>No spreadsheets. No guesswork. No mental math.</p>
+
+  <p>Just a clean dashboard that answers the questions you should be asking:</p>
+
+  <ul>
+    <li><em>"Am I using all the benefits I'm paying for?"</em></li>
+    <li><em>"Am I on track to hit my signup bonus?"</em></li>
+    <li><em>"What's my actual ROI across all my cards?"</em></li>
+    <li><em>"When can I apply for another Chase card?"</em></li>
+  </ul>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <span class="number">18+</span>
+      <span class="label">Pre-loaded cards</span>
+    </div>
+    <div class="stat-box">
+      <span class="number">7</span>
+      <span class="label">Major issuers</span>
+    </div>
+    <div class="stat-box">
+      <span class="number">$0</span>
+      <span class="label">Price. Forever.</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>What ChurnPilot Does</h2>
+
+  <div class="feature-card">
+    <h3>📚 Card Library — Start in Seconds</h3>
+    <p>Choose from 18+ pre-loaded card templates from Chase, Amex, Capital One, Citi, Bilt, US Bank, and Wells Fargo. Every benefit, credit, and perk is already filled in. Just pick your cards and go.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🤖 Smart Card Import — Paste a Link, Done</h3>
+    <p>Found a new card offer online? Paste the URL into ChurnPilot and it automatically extracts the annual fee, benefits, signup bonus, and spend requirements. No manual data entry.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>📊 Benefit Tracking — See What You're Missing</h3>
+    <p>Track monthly credits, annual credits, and special perks across all your cards. ChurnPilot shows you what you've used and — more importantly — what you <em>haven't</em>. That's the money you're leaving behind.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🎯 Signup Bonus Tracker — Never Miss a Deadline</h3>
+    <p>Track your minimum spend requirements, deadlines, and progress toward every signup bonus. ChurnPilot tells you exactly how much more you need to spend and how many days you have left.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🏦 Chase 5/24 Tracker — Know When You're Eligible</h3>
+    <p>Chase denies applications if you've opened 5+ cards in 24 months. ChurnPilot tracks your application history and tells you exactly when you can apply again.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>💰 Portfolio Analytics — Your True ROI</h3>
+    <p>See your total annual fees, total benefits value, net value, and ROI across your entire portfolio — at a glance. Finally know whether your cards are working for you or against you.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>📂 Spreadsheet Import — Bring Your Data</h3>
+    <p>Already tracking your cards in a spreadsheet? Upload your CSV, XLSX, or TSV file and import everything in one step. ChurnPilot replaces your spreadsheet — it doesn't make you start from scratch.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🌐 Bilingual — English &amp; 中文</h3>
+    <p>Full Chinese language support with a one-click toggle. Every label, every feature, every detail — in your language.</p>
+  </div>
+
+  <hr>
+
+  <h2>Who Is This For?</h2>
+
+  <div class="scenario">
+    <div class="persona">🃏 The Casual Cardholder</div>
+    <p>You have 2–4 cards. You know they have perks, but you're not sure exactly what they are or when they expire. You've definitely forgotten to use some credits. ChurnPilot shows you what you're paying for and what you're actually using.</p>
+  </div>
+
+  <div class="scenario">
+    <div class="persona">📋 The Spreadsheet Warrior</div>
+    <p>You have a Google Sheet with 10+ cards, annual fees, benefit values, and renewal dates. It works... mostly. It's always a little out of date. Some columns don't make sense anymore. ChurnPilot gives you a real dashboard with automatic tracking, instead of a spreadsheet you dread updating.</p>
+  </div>
+
+  <div class="scenario">
+    <div class="persona">🔥 The Churner</div>
+    <p>You have 15–50+ cards. You're juggling multiple signup bonuses at once. You know about 5/24 but you're counting on your fingers. You've missed at least one bonus because you lost track of the spend deadline. ChurnPilot keeps every deadline, every requirement, and every application in one place.</p>
+  </div>
+
+  <div class="scenario">
+    <div class="persona">🤷 The "I Don't Track Anything" Person</div>
+    <p>You have a rewards card or two. You've never thought about tracking benefits because it seems like a hassle. But you're curious — are you actually getting your money's worth? ChurnPilot takes 60 seconds to set up and might show you money you didn't know you were losing.</p>
+  </div>
+
+  <hr>
+
+  <h2>Why Free?</h2>
+
+  <p>No trial period. No premium tier. No "enter your credit card to continue."</p>
+
+  <p>ChurnPilot is free because it's a tool built to solve a real problem. The goal is simple: help people stop losing money on benefits they're already paying for.</p>
+
+  <p>ChurnPilot has resolved over 115 issues to deliver a polished, reliable experience. This isn't a prototype or an experiment — it's a fully functional dashboard you can use today.</p>
+
+  <div class="cta-center">
+    <a href="https://churnpilot.streamlit.app" class="cta-button">Open ChurnPilot — Free Forever</a>
+    <span class="cta-sub">Add your first card in under 60 seconds.</span>
+  </div>
+
+  <hr>
+
+  <h2>The Bottom Line</h2>
+
+  <p>Every month, benefits expire. Every quarter, credits go unclaimed. Every year, you pay annual fees for perks you never use.</p>
+
+  <p>It's not because you're careless. It's because no one can keep track of 5, 10, or 30 cards in their head.</p>
+
+  <p><strong>ChurnPilot makes it effortless.</strong> One dashboard. All your cards. Every benefit tracked. Every deadline visible. Every dollar accounted for.</p>
+
+  <div class="highlight">
+    <p><strong>Stop wondering what you're forgetting.</strong> Start knowing what you're earning.</p>
+  </div>
+
+  <div class="cta-center" style="margin-top: 56px; margin-bottom: 56px;">
+    <a href="https://churnpilot.streamlit.app" class="cta-button">Try ChurnPilot Now →</a>
+    <span class="cta-sub">Free. No signup wall. See your portfolio in 60 seconds.</span>
+  </div>
+
+  <hr>
+
+  <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 32px;">
+    <strong style="color: #999;">ChurnPilot</strong> — Credit card management, simplified.<br>
+    <a href="https://churnpilot.streamlit.app">churnpilot.streamlit.app</a>
+  </p>
+  
+</main>
+
+<footer class="footer">
+  <p>Built by <a href="/">Hendrix</a> · <a href="https://churnpilot.streamlit.app">Try ChurnPilot</a> · <a href="https://hendrixchronicles.substack.com">Subscribe on Substack</a></p>
+</footer>
+
+</body>
+</html>
