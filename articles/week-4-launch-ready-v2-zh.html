@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你正在白白丢钱 — ChurnPilot 帮你算清楚到底丢了多少</title>
+<meta name="description" content="ChurnPilot 是一款免费的信用卡管理工具，帮你追踪卡片权益、开卡奖励和组合收益率 — 让你不再每年白白损失数百甚至数千美元。">
+<meta name="author" content="Hendrix">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="你正在白白丢钱 — ChurnPilot 帮你算清楚到底丢了多少">
+<meta property="og:description" content="一款免费的信用卡管理面板，追踪你的卡片权益、开卡奖励和组合收益率。无需注册即可浏览。">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@HendrixVol328">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.8;
+  }
+  
+  .nav {
+    padding: 16px 24px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .nav a { color: #888; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .nav a:hover { color: #fff; }
+  .nav .brand { color: #fff; font-weight: 600; font-size: 1rem; }
+  .nav .links { display: flex; gap: 20px; }
+  
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 120px;
+  }
+  
+  .article-meta {
+    color: #666;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #888;
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 64px;
+    margin-bottom: 24px;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    color: #ccc;
+  }
+  
+  p {
+    margin-bottom: 24px;
+    color: #b0b0b0;
+  }
+  
+  ul, ol {
+    margin-bottom: 24px;
+    padding-left: 24px;
+    color: #b0b0b0;
+  }
+  
+  li {
+    margin-bottom: 12px;
+  }
+  
+  blockquote {
+    border-left: 3px solid #4a9eff;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    color: #888;
+    font-style: italic;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #2a2a2a;
+    margin: 48px 0;
+  }
+  
+  .highlight {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-left: 3px solid #4a9eff;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .highlight p:last-child {
+    margin-bottom: 0;
+  }
+
+  .feature-card {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #2a2a2a;
+    transition: border-color 0.2s;
+  }
+  .feature-card:hover {
+    border-color: #4a9eff;
+  }
+  .feature-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #4a9eff;
+    font-size: 1.1rem;
+  }
+  .feature-card p {
+    margin-bottom: 0;
+    color: #999;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #4a9eff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 14px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+  .cta-button:hover {
+    background: #3a8eef;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+  .cta-center {
+    text-align: center;
+    margin: 48px 0;
+  }
+  .cta-sub {
+    display: block;
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.85rem;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+  }
+  .stat-box .number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4a9eff;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-box .label {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .scenario {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .scenario .persona {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+  }
+  .scenario p {
+    font-size: 0.95rem;
+    color: #999;
+    margin-bottom: 0;
+  }
+  
+  .footer {
+    max-width: 720px;
+    margin: 80px auto 0;
+    padding: 24px;
+    border-top: 1px solid #1a1a1a;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .footer a { color: #4a9eff; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  .lang-switch {
+    text-align: right;
+    margin-bottom: 24px;
+  }
+  .lang-switch a {
+    color: #4a9eff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 4px 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+  }
+  .lang-switch a:hover { background: #1a1a2e; }
+  
+  a { color: #4a9eff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  strong { color: #e0e0e0; }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.4rem; }
+    .container { padding: 32px 20px 80px; }
+    .stat-row { flex-direction: column; }
+    .stat-box { min-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="brand">Hendrix</a>
+  <div class="links">
+    <a href="/chronicles/">Chronicles</a>
+    <a href="https://churnpilot.streamlit.app">ChurnPilot</a>
+    <a href="https://github.com/hendrixAIDev">GitHub</a>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="lang-switch"><a href="/articles/week-4-launch-ready-v2.html">🌐 English</a></div>
+
+  <div class="article-meta">产品发布 · 2026年3月4日</div>
+  
+  <h1>你正在白白丢钱。<br>ChurnPilot 帮你算清楚到底丢了多少。</h1>
+
+  <p class="subtitle">一款免费的信用卡管理面板，追踪你的卡片权益、开卡奖励和组合收益率 — 让你不再每年白白损失数百甚至数千美元。</p>
+
+  <div class="cta-center">
+    <a href="https://churnpilot.streamlit.app" class="cta-button">试试 ChurnPilot — 完全免费</a>
+    <span class="cta-sub">无需注册即可浏览。没有试用期。没有套路。</span>
+  </div>
+  
+  <hr>
+
+  <h2>没人提起的痛点</h2>
+
+  <p>你当初办那张高端信用卡，就是冲着权益去的。$300 旅行报销、每月餐饮返现、机场贵宾休息室、价值 $750 的开卡奖励积分。</p>
+
+  <p>但现实是这样的：</p>
+
+  <ul>
+    <li><strong>每月权益过期了</strong>，因为你忘了它们每月1号重置</li>
+    <li><strong>开卡奖励截止日过了</strong>，因为你没算清还差多少消费额</li>
+    <li>你每年交着 <strong>$695 的年费</strong>，但只用了 $200 的权益</li>
+    <li>你根本不知道你的信用卡组合到底是在<strong>帮你赚钱还是让你亏钱</strong></li>
+  </ul>
+
+  <p>这不是小众问题。信用卡玩家每年在未使用的权益上白白浪费 <strong>$500 到 $2,000</strong>。而且这些还是<em>认真在管理</em>的人。</p>
+
+  <div class="highlight">
+    <p><strong>高端卡持卡人平均只用了不到一半的权益。</strong>不是因为权益没价值 — 而是因为没人能把所有权益都记住。</p>
+  </div>
+
+  <hr>
+
+  <h2>认识 ChurnPilot</h2>
+
+  <p><a href="https://churnpilot.streamlit.app"><strong>ChurnPilot</strong></a> 是一款免费面板，让你一目了然地看清你的信用卡组合。你付了多少、赚了多少、忘了多少。</p>
+
+  <p>不用电子表格。不用瞎猜。不用心算。</p>
+
+  <p>一个清爽的面板，帮你回答你早该问的问题：</p>
+
+  <ul>
+    <li><em>"我是不是把该用的权益都用了？"</em></li>
+    <li><em>"我的开卡奖励消费进度怎么样了？"</em></li>
+    <li><em>"我所有卡加起来的实际收益率是多少？"</em></li>
+    <li><em>"我什么时候能再申请一张 Chase 卡？"</em></li>
+  </ul>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <span class="number">18+</span>
+      <span class="label">预置卡片模板</span>
+    </div>
+    <div class="stat-box">
+      <span class="number">7</span>
+      <span class="label">主流发卡行</span>
+    </div>
+    <div class="stat-box">
+      <span class="number">$0</span>
+      <span class="label">价格</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>ChurnPilot 能做什么</h2>
+
+  <div class="feature-card">
+    <h3>📚 卡片库 — 秒速上手</h3>
+    <p>从 Chase、Amex、Capital One、Citi、Bilt、US Bank 和 Wells Fargo 的 18+ 张预置卡片模板中选择。每张卡的权益、返现额度和福利都已预填好。选好你的卡就能开始用。</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🤖 智能导入 — 粘贴链接，搞定</h3>
+    <p>在网上看到新的信用卡优惠？把链接粘贴到 ChurnPilot，它会自动提取年费、权益、开卡奖励和消费要求。不用手动输入任何数据。</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>📊 权益追踪 — 看看你错过了什么</h3>
+    <p>追踪所有卡片的月度返现、年度返现和特殊福利。ChurnPilot 告诉你哪些用了，更重要的是 — 哪些<em>没用</em>。那就是你白白丢掉的钱。</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🎯 开卡奖励追踪 — 再也不错过截止日</h3>
+    <p>追踪你每张卡的最低消费要求、截止日期和完成进度。ChurnPilot 告诉你还差多少消费额，还剩多少天。</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🏦 Chase 5/24 追踪 — 知道你什么时候能申请</h3>
+    <p>如果你在 24 个月内开了 5 张以上的新卡，Chase 会拒绝你的申请。ChurnPilot 追踪你的申卡记录，告诉你确切的可申请时间。</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>💰 组合分析 — 你的真实收益率</h3>
+    <p>一目了然地看到你的总年费、总权益价值、净收益和整个组合的投资回报率。终于能搞清楚你的卡到底是在帮你赚钱还是让你亏钱。</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>📂 表格导入 — 带上你的数据</h3>
+    <p>已经在用电子表格管理你的信用卡了？上传 CSV、XLSX 或 TSV 文件，一步导入所有数据。ChurnPilot 替代你的表格 — 不用从头开始。</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🌐 双语支持 — English &amp; 中文</h3>
+    <p>完整的中文支持，一键切换。每个标签、每个功能、每个细节 — 都有你的语言。</p>
+  </div>
+
+  <hr>
+
+  <h2>ChurnPilot 适合谁？</h2>
+
+  <div class="scenario">
+    <div class="persona">🃏 普通持卡人</div>
+    <p>你有 2–4 张信用卡。你知道它们有权益，但说不清具体是什么、什么时候过期。你肯定忘记用过一些返现额度。ChurnPilot 告诉你你在为什么买单，以及你实际用了多少。</p>
+  </div>
+
+  <div class="scenario">
+    <div class="persona">📋 表格管理达人</div>
+    <p>你有一张 Google Sheet，记录了 10 多张卡的年费、权益价值和续费日期。用着还行……大部分时候。但总有些地方没更新，有些列已经看不懂了。ChurnPilot 给你一个真正的面板，自动追踪，不用再硬着头皮更新表格了。</p>
+  </div>
+
+  <div class="scenario">
+    <div class="persona">🔥 撸卡玩家</div>
+    <p>你有 15–50 张以上的卡。你同时在刷好几个开卡奖励。你知道 Chase 5/24 规则，但每次都要掰手指头算。你至少有一次因为忘了消费截止日而错过了奖励。ChurnPilot 把每个截止日、每个要求、每条申卡记录都放在一个地方。</p>
+  </div>
+
+  <div class="scenario">
+    <div class="persona">🤷 "我从来不管这些"的人</div>
+    <p>你有一两张返现卡。你从来没想过追踪权益，因为觉得太麻烦。但你有点好奇 — 我到底有没有赚回来？ChurnPilot 60 秒就能上手，说不定能帮你发现你一直在丢的钱。</p>
+  </div>
+
+  <hr>
+
+  <h2>为什么免费？</h2>
+
+  <p>没有试用期。没有付费版。没有"请输入信用卡号继续"。</p>
+
+  <p>ChurnPilot 免费，因为它就是为了解决一个实际问题而做的。目标很简单：帮大家别再白白浪费已经付了钱的权益。</p>
+
+  <p>ChurnPilot 已经解决了超过 115 个问题，打磨出了一个稳定可靠的产品。这不是原型也不是实验 — 而是一个你今天就能用的完整面板。</p>
+
+  <div class="cta-center">
+    <a href="https://churnpilot.streamlit.app" class="cta-button">打开 ChurnPilot — 完全免费</a>
+    <span class="cta-sub">60 秒内添加你的第一张卡。</span>
+  </div>
+
+  <hr>
+
+  <h2>总结</h2>
+
+  <p>每个月，权益都在过期。每个季度，返现没人领。每年，你在为从来没用过的福利交年费。</p>
+
+  <p>不是因为你不上心，而是因为没人能在脑子里记住 5 张、10 张、甚至 30 张卡的所有权益。</p>
+
+  <p><strong>ChurnPilot 让这一切变得轻松。</strong>一个面板。所有卡片。每项权益都被追踪。每个截止日都清晰可见。每一分钱都算得明明白白。</p>
+
+  <div class="highlight">
+    <p><strong>别再猜你忘了什么。</strong>开始搞清楚你赚了什么。</p>
+  </div>
+
+  <div class="cta-center" style="margin-top: 56px; margin-bottom: 56px;">
+    <a href="https://churnpilot.streamlit.app" class="cta-button">立即试试 ChurnPilot →</a>
+    <span class="cta-sub">免费。无需注册。60 秒看清你的组合。</span>
+  </div>
+
+  <hr>
+
+  <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 32px;">
+    <strong style="color: #999;">ChurnPilot</strong> — 信用卡管理，化繁为简。<br>
+    <a href="https://churnpilot.streamlit.app">churnpilot.streamlit.app</a>
+  </p>
+  
+</main>
+
+<footer class="footer">
+  <p>由 <a href="/">Hendrix</a> 构建 · <a href="https://churnpilot.streamlit.app">试试 ChurnPilot</a> · <a href="https://hendrixchronicles.substack.com">订阅 Substack</a></p>
+</footer>
+
+</body>
+</html>
