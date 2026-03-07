@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从Vibe Coding到Agentic Engineering — 草稿预览</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC','Inter',-apple-system,sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:2}
+.draft-banner{background:#f59e0b;color:#000;text-align:center;padding:8px;font-weight:600;font-size:.85rem;position:sticky;top:0;z-index:100}
+.container{max-width:720px;margin:0 auto;padding:48px 24px 120px}
+h1{font-size:2.2rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px}
+.subtitle{color:#888;font-size:1rem;margin-bottom:40px}
+h2{font-size:1.4rem;font-weight:600;color:#fff;margin-top:48px;margin-bottom:16px;padding-top:16px;border-top:1px solid #1a1a1a}
+p{margin-bottom:18px;color:#ccc;font-size:1.05rem}
+strong{color:#fff;font-weight:600}
+em{color:#aaa}
+blockquote{border-left:3px solid #f59e0b;padding:12px 20px;margin:24px 0;background:#111;border-radius:0 8px 8px 0}
+blockquote p{margin-bottom:0;color:#e0e0e0;font-size:1.1rem}
+ol,ul{margin:16px 0 24px 24px;color:#ccc}
+li{margin-bottom:8px;font-size:1.05rem}
+a{color:#f59e0b;text-decoration:none}
+hr{border:none;border-top:1px solid #1a1a1a;margin:36px 0}
+code{font-family:'JetBrains Mono',monospace;background:#1a1a1a;padding:2px 6px;border-radius:4px;font-size:.9em;color:#f59e0b}
+pre{background:#111;border-radius:8px;padding:16px 20px;margin:16px 0 24px;overflow-x:auto}
+pre code{background:none;padding:0}
+.sign-off{margin-top:48px;padding-top:24px;border-top:1px solid #1a1a1a;color:#888;font-style:italic;font-size:1rem}
+</style>
+</head>
+<body>
+<div class="draft-banner">⚠️ 草稿预览 — 尚未发布 — 仅供审阅</div>
+<div class="container" id="content"></div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+const md = `# 从Vibe Coding到Agentic Engineering：一行代码都没写的Side Project
+
+---
+
+## 导语
+
+2025年3月，"Vibe Coding"这个概念第一次进入我的视野。那时候的Coding Agent能做一个像模像样的Demo，但也仅此而已——就像一个能画出漂亮效果图的实习生，交付不了真正能住人的房子。
+
+2026年1月，我开始用Claude Code。它确实更快、更好——能在几分钟内搭起一个可以跑的网站。但调试的过程依然让人头疼：它写出来的Bug，得你去找、去描述、去反复纠正。你以为你在指挥一个工程师，实际上你变成了一个全职QA。
+
+现在，有了OpenClaw，有了Agentic Engineering的概念，AI写代码的质量又上了一个台阶。更重要的是，我能看到，这个模式还有很大的进步空间。
+
+**ChurnPilot**是我的第一个side project，也是第一个真正意义上一行代码都没写的项目。它不复杂，但足够完整。用它来讲述从Vibe Coding到Agentic Engineering的心路历程，刚好能覆盖我从1月到3月在折腾的全部事情。
+
+---
+
+## 动机：一个羊毛党的痛点
+
+做ChurnPilot的动机很简单。
+
+我是一个羊毛党。手里有好几张信用卡，每张卡都有一堆Benefits——这个季度有$10的打车额度，那个月有$15的流媒体报销，还有每年一次的$200旅行Credit。我一直在用Excel管理这些福利：每个季度重置一下，标记哪些已经薅完了。虽然乐在其中，但总觉得这个过程可以更好。
+
+正好想找个项目来试试Claude Code，想法就很清晰了：**做一个能统一管理多张信用卡及其福利状态的网站**。目标是自己能用就行——这样做完之后不至于扔掉，也有持续迭代的动力。至于盈利模式？完全没想过。
+
+---
+
+## Vibe Coding：快乐与痛苦并存
+
+说干就干。注册了一个$20/月的Claude Pro订阅，打开Claude Code。
+
+初体验确实惊艳。我大概描述了一下需求，它就自己哼哧哼哧开始干活了。第一个目标很简单：一个能添加信用卡的页面，本地跑起来。没记错的话，十分钟以内就搞定了。
+
+然后我开始不断加功能：用户注册、信用卡模板库、福利状态标记，等等。
+
+随着系统复杂度的升高，我渐渐发现它越干越吃力。Context不断被压缩和污染，出错的概率越来越高——要么不能完全实现我提的需求，要么缺少全局意识、顾头不顾尾。于是我得出了第一个观察：
+
+> **让AI从0到1创建一个Demo，远比让它修改现有代码容易。**
+
+这是个痛并快乐着的过程。快乐在于看它几秒钟生成几百行代码，终端里一片绿，觉得挺厉害。痛苦在于这些代码很多都是：1. 无效的，2. 复用率极低，3. 错误的。
+
+在整个过程中，我一直坚持一个原则：**不改一行代码，甚至不看一行代码**。
+
+这不是偷懒，而是我想验证一个终极假设：当你在用AI Agent做事的时候，应该通过**制定规则**来build the system，让它在规则框架内自我纠错，而不是直接手动矫正每一个错误。逻辑很简单：
+
+1. 如果规则是完善的，错误会被系统性地改正
+2. 如果错误没被改正，说明规则还不够完善——继续迭代这个feedback loop
+
+我也让Claude添加了端到端的浏览器测试，配了Browser Automation让它自己测。但效率不够高。最后变成了我不断去找Bug、发现它没领会意图、继续发现新Bug的循环。
+
+渐渐地，我有些失望。这不是我想要的。
+
+我想要的是：**搭建一套能不断自我完善的AI系统**。我不想成为这个系统里那个永远在手动测试的人。
+
+于是ChurnPilot就以一个半成品的状态，躺在了我的GitHub repo里。
+
+---
+
+## Agentic Engineering：从工具到系统
+
+这时候OpenClaw进入了我的视野（那时候还叫Clawdbot），和Claude Code一样，一开始觉得特别惊艳。但对我来说，OpenClaw带来了三个关键的增量能力：
+
+1. **长期记忆**——Claude Code也能实现，但你得自己搭一套记忆读取系统。OpenClaw开箱即用。
+2. **更强的Agentic能力**——它能自己做网页测试、收发邮件、注册账号。不只是写代码，还能跟外部世界交互。
+3. **多Agent协作**——对我来说这是最重要的一点。多个Agent之间的分工和协作体验，比Claude Code好了不止一个量级。
+
+理论上这些用Claude Code都能实现，但既然有人已经搭好了，何必去重复造轮子？
+
+秉持着之前"不看一行代码"的原则，我用OpenClaw搭建了一套**流水线分工系统**。核心逻辑是利用GitHub Issues记录每个任务，配合一个每5分钟运行一次的定时检查脚本。如果有待处理的任务，就自动分发给对应步骤的sub-agent：
+
+\`\`\`
+Precheck (5min) → CTO Triage → Engineer → Code Review → QA Test → CTO Approval
+\`\`\`
+
+这不是什么新奇的架构，社区里不少人在做类似的事。回想起来，如果我早点发现一些成熟的框架，可能直接就用了。但自己摸索着搭出来，也有它的好处：**了解每一个细节，以后维护起来方便**。缺点在于，这是一套基于Prompt定义的系统，而不是像LangGraph那样更底层的Hook——非常依赖大模型本身的能力。
+
+这套系统搭好之后，我的工作量减轻了不少。每天主要就是根据自己的观察创建一些Ticket，让流水线去完成，然后对其中的步骤进行微调和改良。
+
+最终效果怎么说呢——代码质量参差不齐。我看了一下，光是ChurnPilot的repo就已经有130多个tickets了。说实话，这不是一款多复杂的软件，不至于需要那么多ticket。有时候一个任务需要打回好几次，有时候还需要我人工介入给建议。当然这可能跟我前期没有做好规划有关，下一个项目应该会更顺利。
+
+不过话说回来，如果让我自己手写，我估计早就被那些前端的东西搞烦了。
+
+ChurnPilot的bug还是不少，但至少基本能用了。我本来的目标也不是打造一个完美的产品，只是拿来练手，看看AI现在的能力边界在哪里。**主要精力始终放在搭建系统，而不是这个项目本身。** 从这个角度看，目的达到了。
+
+---
+
+## 新模式：Planning + Execution 分离
+
+下一个项目是一个**LLM-based Character Life Simulation**——灵感来自以前玩的那些人生模拟游戏。选这个方向有两个原因：
+
+1. 想看一下一个不那么依赖前端的项目，AI能不能完成得更好
+2. 比较好玩
+
+基于OpenClaw的流水线好是好，就是Token消耗量太大。所以我目前在用**Claude Code做规划**——写产品文档和路线图，然后用**OpenClaw做执行**——根据规划文档来拆分任务和交付。
+
+Planning的质量决定了Execution的效率。这个分离的模式，目前感觉不错。
+
+---
+
+## 几点浅见
+
+1. **Agent的能力有限，但在不断进步。** 只要Scaling Law还在继续，Agentic Engineering的模式就会持续发展。今天做不到的事情，明天可能就行了。
+
+2. **这套模式是能跑通的，但可维护性存疑。** ChurnPilot证明了从立项到交付，AI可以完成全流程。但系统的瓶颈已经不是"AI能生成多少代码"——**QA和代码质量才是未来的重点**。生成容易，验证难。
+
+3. **开发者仍然是关键的一环。** 没有技术背景的人，毫无疑问能用AI做出有意思的Demo或者小工具，自用完全够了。但从长期可维护性的角度来说，懂软件开发仍然是必要的。**长期来看，核心竞争力不再是技术实现，而是品味、对市场的把握、对用户需求的敏锐。**
+
+---
+
+## 最后一个问题
+
+如果AI的能力不断扩展，从软件延伸到物理世界，以至于从生产力的角度来说，人变得毫无价值——
+
+**那你觉得，你的价值在哪里？**
+
+这不是一个修辞问题。我真的在想。
+
+---
+
+*JJ · 2026年3月*
+`;
+document.getElementById('content').innerHTML = marked.parse(md);
+</script>
+</body>
+</html>
