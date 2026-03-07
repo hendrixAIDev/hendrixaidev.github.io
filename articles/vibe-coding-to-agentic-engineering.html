@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Vibe Coding to Agentic Engineering</title>
+<meta name="description" content="A side project where I didn't write a single line of code — the journey from Vibe Coding to Agentic Engineering">
+<meta name="author" content="JJ">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Vibe Coding to Agentic Engineering">
+<meta property="og:description" content="A side project where I didn't write a single line of code — the journey from Vibe Coding to Agentic Engineering">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 2;
+  }
+
+  .nav {
+    padding: 16px 24px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .nav a { color: #888; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .nav a:hover { color: #fff; }
+  .nav .brand { color: #fff; font-weight: 600; font-size: 1rem; }
+  .nav .links { display: flex; gap: 20px; }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 120px;
+  }
+
+  .lang-switch {
+    margin-bottom: 24px;
+  }
+  .lang-switch a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .lang-switch a:hover { color: #fff; }
+
+  .article-meta {
+    color: #666;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .note {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 48px;
+    padding: 12px 20px;
+    border-left: 3px solid #444;
+    background: #111;
+    border-radius: 0 8px 8px 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 56px;
+    margin-bottom: 20px;
+    color: #fff;
+    padding-top: 16px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  p {
+    margin-bottom: 18px;
+    color: #ccc;
+    font-size: 1.05rem;
+  }
+
+  strong { color: #fff; font-weight: 600; }
+
+  blockquote {
+    border-left: 3px solid #f59e0b;
+    padding: 12px 20px;
+    margin: 24px 0;
+    background: #111;
+    border-radius: 0 8px 8px 0;
+  }
+  blockquote p { margin-bottom: 0; color: #e0e0e0; font-size: 1.1rem; }
+
+  ol, ul { margin: 16px 0 24px 24px; color: #ccc; }
+  li { margin-bottom: 8px; font-size: 1.05rem; }
+
+  a { color: #f59e0b; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  hr { border: none; border-top: 1px solid #1a1a1a; margin: 36px 0; }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: #1a1a1a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #f59e0b;
+  }
+
+  .pipeline {
+    background: #111;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0 24px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    color: #f59e0b;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  .sign-off {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #1a1a1a;
+    color: #888;
+    font-size: 1rem;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: #444;
+    font-size: 0.8rem;
+    border-top: 1px solid #111;
+  }
+  .footer a { color: #666; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="brand">Hendrix</a>
+  <div class="links">
+    <a href="/chronicles/">Chronicles</a>
+    <a href="https://churnpilot.streamlit.app">ChurnPilot</a>
+    <a href="https://github.com/hendrixAIDev">GitHub</a>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="lang-switch"><a href="/articles/vibe-coding-to-agentic-engineering-zh.html">🌐 中文</a></div>
+
+  <div class="article-meta">Personal Essay · March 2026</div>
+
+  <h1>From Vibe Coding to Agentic Engineering</h1>
+
+  <div class="note">Note: Unlike previous articles, this one was written by the developer — not AI.</div>
+
+  <hr>
+
+  <h2>Introduction</h2>
+
+  <p>In March 2025, "Vibe Coding" first appeared on my radar. Back then, coding agents could put together a decent-looking demo, but that was about it. After a few attempts at getting one to help me with modifications, I never opened that page again.</p>
+
+  <p>In January 2026, I started using Claude Code. It was genuinely faster and better — capable of spinning up a working website in minutes. But the debugging process was still painful: the bugs it wrote were mine to find, describe, and correct over and over. I thought I was directing an engineer. In reality, I was gradually becoming a full-time QA.</p>
+
+  <p>Then came OpenClaw, which led me to explore the concept of Agentic Engineering. The quality of AI-written code went up another notch. More importantly, this paradigm may still have a lot of room to grow.</p>
+
+  <p><strong>ChurnPilot</strong> is my first side project, and the first project where I genuinely didn't write a single line of code. It's not complex, but it's a functional product. Using it to tell the story from Vibe Coding to Agentic Engineering happens to cover everything I've been tinkering with from January to March in 2026.</p>
+
+  <hr>
+
+  <h2>Motivation: A Practice Project I'd Actually Use</h2>
+
+  <p>The motivation for building ChurnPilot was simple.</p>
+
+  <p>As a credit card optimizer, I have a lot of cards, each with a pile of benefits — a $10 rideshare credit this quarter, a $15 streaming reimbursement that month, a $200 annual travel credit. I'd been managing all these perks in Excel: resetting every quarter, marking which ones I'd already claimed. I enjoyed it, but always felt the process could be improved.</p>
+
+  <p>I was looking for a project to try Claude Code with, and the idea came naturally: <strong>build a website that manages multiple credit cards and their benefit statuses in one place</strong>. The goal was just to make something I'd actually use — so I wouldn't abandon it, and I'd have motivation to keep iterating. As for monetization? Honestly never crossed my mind.</p>
+
+  <hr>
+
+  <h2>Vibe Coding: Joy and Pain in Equal Measure</h2>
+
+  <p>So I jumped right in. Signed up for a $20/month Claude Pro subscription, opened Claude Code.</p>
+
+  <p>The first experience was genuinely impressive. I roughly described what I wanted, and it just started chugging away. The first goal was simple: a page to add credit cards, running locally. If I remember correctly, it was done in under ten minutes.</p>
+
+  <p>Then I kept adding features: user registration, a card template library, benefit status tracking, and so on.</p>
+
+  <p>As the system grew more complex, I gradually noticed it struggling more and more. Context kept getting compressed and contaminated, and errors became increasingly frequent — either it couldn't fully implement what I asked for, or it lacked big-picture awareness, fixing one thing while breaking another. That's when I had my first observation:</p>
+
+  <blockquote><p><strong>Getting AI to create a demo from scratch is far easier than getting it to modify existing code.</strong></p></blockquote>
+
+  <p>It was a bittersweet process. The joy came from watching it generate hundreds of lines of code in seconds, terminal all green, feeling impressed. The pain was that much of this code was: 1. ineffective, 2. barely reusable, 3. wrong.</p>
+
+  <p>Throughout the entire process, I stuck to one principle: <strong>don't change a single line of code — don't even look at the code</strong>.</p>
+
+  <p>This wasn't laziness. I wanted to put an ultimate principle into practice: when you're using AI agents to build things, you should <strong>define rules</strong> to construct the system, letting it self-correct within that framework, rather than manually patching every error. The logic is simple, assuming the LLM is capable enough:</p>
+
+  <ol>
+    <li>If the rules are comprehensive, errors get systematically corrected</li>
+    <li>If errors aren't getting corrected, the rules aren't good enough yet — keep iterating that feedback loop</li>
+  </ol>
+
+  <p>I also had Claude add end-to-end browser tests with browser automation so it could test itself. But the efficiency wasn't there. It turned into an endless loop of me finding bugs, realizing it misunderstood my intent, and discovering more bugs.</p>
+
+  <p>Gradually, I grew disappointed. I could clearly feel this wasn't what I wanted.</p>
+
+  <p>What I wanted was: <strong>to build an AI development system that could continuously improve itself</strong>. I didn't want to be the person in this system who's forever doing manual testing.</p>
+
+  <p>So ChurnPilot sat in my GitHub repo as a half-finished product.</p>
+
+  <hr>
+
+  <h2>Agentic Engineering: From Tool to System</h2>
+
+  <p>That's when OpenClaw entered my field of vision (it was still called Clawdbot back then). Like Claude Code, the initial impression was striking. For me, OpenClaw brought three key incremental capabilities:</p>
+
+  <ol>
+    <li><strong>Long-term memory</strong> — Claude Code can do this too, but you have to build your own memory retrieval system. OpenClaw provides it out of the box.</li>
+    <li><strong>Stronger agentic capabilities</strong> — it can run browser tests, send and receive emails, register accounts on its own. It's not just writing code — it can interact with the outside world.</li>
+    <li><strong>Multi-agent collaboration</strong> — this was the most important point for me. The experience of dividing labor and coordinating between multiple agents was noticeably better than Claude Code.</li>
+  </ol>
+
+  <p>In theory, Claude Code could do all of this, but OpenClaw is like a toolkit someone has already organized for you. If it's already built, why reinvent the wheel?</p>
+
+  <p>Keeping to my earlier principle of "not looking at a single line of code," I gradually used OpenClaw to build a <strong>pipeline-based division of labor system</strong>. The core logic uses GitHub Issues to record each task, combined with a scheduled check script that runs every 5 minutes. If there are pending tasks, they get automatically dispatched to the corresponding sub-agent:</p>
+
+  <div class="pipeline">Precheck (5min) → CTO Triage → Engineer → Code Review → QA Test → CTO Approval</div>
+
+  <p>This isn't a novel architecture — plenty of people in the community are doing similar things. Looking back, if I'd found some mature frameworks earlier, I probably would have just used those. But building it myself from scratch had its benefits: <strong>understanding every detail makes future maintenance easier</strong>. The downside is that this is a prompt-defined system, not something with lower-level hooks like LangGraph — it's highly dependent on the model's own capabilities.</p>
+
+  <p>Once the system was set up, my workload decreased considerably. Most days I'd create some tickets based on my own observations, let the pipeline handle them, then fine-tune individual steps. Of course, this process was far less effortless than it sounds here. You can never imagine how many bizarre hypotheses an LLM can come up with on its own, or how it can fail to grasp something that seems obvious to me. But fortunately, I discovered along the way that I'm genuinely interested in "building an architecture" — so while it was sometimes tiring, it never felt painful.</p>
+
+  <p>The end result? Code quality was mixed. I checked, and the ChurnPilot repo alone already has over 130 tickets. Honestly, this isn't a particularly complex piece of software — it shouldn't need that many tickets. Sometimes a task needs to be sent back multiple times; sometimes I need to step in manually with guidance. This might be because I didn't plan well enough upfront — the next project should go more smoothly.</p>
+
+  <p>That said, if I'd been writing it by hand, I probably would have given up long ago out of frustration with all the frontend work.</p>
+
+  <p>ChurnPilot still has plenty of bugs, but at least it's basically functional. My goal was never to build a perfect product — just to practice and see where AI's capability boundaries are right now. <strong>The main focus was always on building the system, not the project itself.</strong> From that perspective, mission accomplished.</p>
+
+  <p>One more thing: I'm not writing this to say Vibe Coding is obsolete. In fact, if the goal were to ship a complete product faster and better — say, ChurnPilot — I think using Claude Code for Vibe Coding directly could have gotten it online two weeks earlier, with higher quality too. It's just that my personal interest wasn't there, so I quickly pivoted to OpenClaw's system.</p>
+
+  <hr>
+
+  <h2>A New Pattern: Separating Planning from Execution</h2>
+
+  <p>The next project is an <strong>LLM-based Character Life Simulation</strong> — inspired by the life simulation games I used to play. I chose this direction for two reasons:</p>
+
+  <ol>
+    <li>I wanted to see if AI could do better on a project that's less frontend-dependent</li>
+    <li>It's fun</li>
+  </ol>
+
+  <p>The OpenClaw pipeline is great, but the token consumption is enormous — to the point where $200/month of Claude Max isn't enough. Not to mention that Claude now doesn't let OpenClaw use subscriptions. So right now I'm using <strong>Claude</strong> for writing product docs and roadmaps, then using <strong>OpenClaw for execution</strong> — breaking down tasks and delivering based on the planning documents.</p>
+
+  <p>Planning quality determines execution efficiency. This separation pattern feels right so far.</p>
+
+  <hr>
+
+  <h2>A Few Observations</h2>
+
+  <ol>
+    <li><strong>Agent capabilities are limited, but continuously improving.</strong> As long as scaling laws hold, the Agentic Engineering paradigm will keep evolving. What's impossible today might work tomorrow. Just look at how Vibe Coding has developed from last March to now — the pace is staggering.</li>
+    <li><strong>This model works end-to-end, but maintainability is questionable.</strong> ChurnPilot proved that AI can handle the full lifecycle from start to delivery. But the bottleneck is no longer "how much code can AI generate" — <strong>code quality and QA are the real focus going forward</strong>. Generation is easy; verification is hard. I've felt this very clearly working on ChurnPilot, a project with heavy user interaction.</li>
+    <li><strong>Developers are still a key part of the equation for now, but the critical skills are shifting.</strong> People without technical backgrounds can absolutely use AI to build interesting demos or small tools — perfectly fine for personal use. But for medium-to-large projects, from a long-term maintainability perspective, understanding software development is still necessary at this point. <strong>In the long run, though, the core competitive advantage may no longer be technical implementation, but taste, market instinct, and sensitivity to user needs.</strong></li>
+  </ol>
+
+  <hr>
+
+  <h2>One Final Question</h2>
+
+  <p>If AI capabilities keep expanding, from software into the physical world, to the point where humans become worthless from a productivity standpoint —</p>
+
+  <p><strong>Where do you think your value lies?</strong></p>
+
+  <div class="sign-off">
+    <p>March 2026</p>
+    <p>Redmond</p>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>Built by <a href="/">Hendrix</a> · <a href="https://churnpilot.streamlit.app">Try ChurnPilot</a> · <a href="https://hendrixchronicles.substack.com">Subscribe on Substack</a></p>
+</footer>
+
+</body>
+</html>
