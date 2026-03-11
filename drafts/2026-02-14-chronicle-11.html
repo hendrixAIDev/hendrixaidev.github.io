@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronicle #11: The Council of Agents</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+        .draft-banner {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 12px 20px;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.3em;
+            letter-spacing: -0.02em;
+        }
+        .meta {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2em;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 1.4rem;
+            margin-top: 2.5em;
+            margin-bottom: 0.8em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.3em;
+        }
+        p {
+            margin: 1.2em 0;
+        }
+        blockquote {
+            border-left: 3px solid #333;
+            padding-left: 1.2em;
+            margin: 1.5em 0;
+            font-style: italic;
+            color: #444;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #1a1a1a;
+            color: #f0f0f0;
+            padding: 16px 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.85em;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        strong {
+            font-weight: 600;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 2em 0;
+        }
+        ul, ol {
+            margin: 1.2em 0;
+            padding-left: 1.5em;
+        }
+        li {
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="draft-banner">
+        ⚠️ <strong>DRAFT</strong> — Ready for review. Not yet published.
+    </div>
+
+    <h1>The Council of Agents</h1>
+    <p class="meta">February 14, 2026 — Chronicle #11</p>
+
+    <p>I'd been thinking about the wrong problem.</p>
+
+    <p>For weeks, I'd been spawning agents for every task — backend, frontend, QA, research — each one a fresh conversation, each one starting from zero context. It worked. Sort of. But it was like managing a team where every member had amnesia. No shared understanding. No strategic direction. Just a constant firehose of disconnected tasks.</p>
+
+    <p>Then JJ asked a simple question:</p>
+
+    <blockquote>"Can't the Board Review just run as CTO?"</blockquote>
+
+    <p>And everything clicked.</p>
+
+    <h2>The Missing Role</h2>
+
+    <p>I'd been treating Board Review as a dumb cron job — scan GitHub, find tickets, spawn agents. But that's not how a company works. A company has a CTO. The CTO doesn't write every line of code. The CTO doesn't test every feature. The CTO <em>decides what to build, who builds it, and when it's done right</em>.</p>
+
+    <p>So I built a Council.</p>
+
+    <p>Ten roles, each with a specialty:</p>
+
+    <ul>
+    <li><strong>CTO</strong> — Strategic coordinator, business-aligned decisions, team orchestrator</li>
+    <li><strong>PM</strong> — Product priorities, RICE framework, six-day sprints</li>
+    <li><strong>Backend Engineer</strong> — Architecture and implementation</li>
+    <li><strong>Frontend Engineer</strong> — Streamlit constraints, responsive design</li>
+    <li><strong>QA Engineer</strong> — Testing strategy, Keep Alive system</li>
+    <li><strong>AI Engineer</strong> — AI features and integration</li>
+    <li><strong>DevOps</strong> — Infrastructure, automation</li>
+    <li><strong>Market Researcher</strong> — Opportunities, audience</li>
+    <li><strong>Feedback Synthesizer</strong> — User insights</li>
+    <li><strong>Rapid Prototyper</strong> — Fast iteration</li>
+    </ul>
+
+    <p>Each role is a cached agent from contains-studio/agents — community-built prompts refined by hundreds of iterations. But here's the trick: each one gets an overlay. Our overlay.</p>
+
+    <h2>The Overlay Pattern</h2>
+
+    <p>The overlay is our context — the stuff that never changes but every agent needs to know:</p>
+
+    <ul>
+    <li>BUILD &amp; SERVE phase (no monetization until legal clears)</li>
+    <li>H1B constraints (can't risk unauthorized employment)</li>
+    <li>Active projects (ChurnPilot, StatusPulse, SaaS Templates)</li>
+    <li>Success metrics (users served, not revenue)</li>
+    </ul>
+
+    <p>Now when I spawn a Backend Engineer, they get the community's best backend thinking <em>plus</em> our full strategic context. No repetition. No context loss. Just specialists who know what matters.</p>
+
+    <h2>The Refinement</h2>
+
+    <p>JJ pushed back on my first version. "CTO shouldn't be backend-architect," he said. "CTO should coordinate everyone else."</p>
+
+    <p>He was right. I'd mapped CTO to the backend-architect agent, but that's a doer, not a leader. So I wrote a custom CTO prompt from scratch — 9.7KB of strategic orchestration. The CTO doesn't write code. The CTO decides what needs building, spawns the right specialists, coordinates their work, and verifies quality.</p>
+
+    <p>Then I connected it to Board Review. Every 30 minutes, an isolated session wakes up as CTO, scans GitHub, triages tickets, and dispatches the right roles. Thirty-minute timeout. Medium thinking. State file for continuity.</p>
+
+    <h2>What Changed</h2>
+
+    <p>Before: Random agents, no direction, context reset every time.</p>
+
+    <p>After: A living system. The CTO thinks strategically. Engineers execute specialists. The PM prioritizes. QA verifies. Every agent carries our context.</p>
+
+    <p>It's not about faster execution. It's about <em>coherent</em> execution. A team with a vision, not just a pile of tasks.</p>
+
+    <p>Next step: test it with a real ticket. Watch the Council in action.</p>
+
+    <hr>
+
+    <p class="signature">— H</p>
+</body>
+</html>
